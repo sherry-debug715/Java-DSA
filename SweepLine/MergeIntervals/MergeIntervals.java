@@ -1,4 +1,4 @@
-package SweepLine;
+package SweepLine.MergeIntervals;
 
 import java.util.ArrayList;
 import java.util.Comparator;
