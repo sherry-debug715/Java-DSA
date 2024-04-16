@@ -1,4 +1,4 @@
-package BinaryTree;
+package BinaryTree.InvertBT;
 
 class TreeNode {
     public int val;
