@@ -1,9 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
-public class Main {
+public class Test {
     static int func(int n) {
         if (n <= 1) {
             return 0;
@@ -21,5 +16,3 @@ public class Main {
         System.out.print(func(9));
     }
 }
-
-
