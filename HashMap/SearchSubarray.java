@@ -1,4 +1,4 @@
-package HashMap.KDifference;
+package HashMap;
 
 import java.util.HashMap;
 import java.util.Map;
