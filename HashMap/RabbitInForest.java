@@ -1,5 +1,6 @@
 package HashMap;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RabbitInForest {
