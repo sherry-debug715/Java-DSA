@@ -1,5 +1,6 @@
 package TwoPointers;
 
+import java.util.HashMap;
 import java.util.Map;
 // Time: O(N^2)
 // Space: O(N)
