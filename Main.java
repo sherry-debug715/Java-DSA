@@ -4,21 +4,44 @@ import java.util.List;
 import java.util.Queue;
 
 public class Main {
-    static int func(int n) {
-        if (n <= 1) {
-            return 0;
+    public class Solution {
+        /**
+         * @param n: An integer
+         * @param edges: a list of undirected edges
+         * @return: true if it's a valid tree, or false
+         */
+        private int[] father = null;
+        private int count = 0;
+        private int find(int k) {
+            if (father[k] == k) {
+                return k;
+            }
+            return father[k]=find(father[k]);
         }
-
-        if (n % 2 == 0) {
-            return func(n / 2) + 1;
-        } else {
-            return func(n - 1) - 1;
+        private void connect(int a, int b) {
+           int roota = find(a),rootb = find(b);
+           if (roota != rootb) {
+               father[roota] = rootb;
+               count--;
+           }
+       }
+        public boolean validTree(int n, int[][] edges) {
+            int m = edges.length;
+            if (n != m + 1) {
+                return false;
+            }
+            
+            count = n;
+            father = new int[n];
+            for (int i = 0; i < n; ++i) {
+                father[i] = i;
+            }
+            
+            for (int i = 0; i < m; ++i) {
+                connect(edges[i][0], edges[i][1]);
+            }
+            return count == 1;
         }
-    }
-
-    public static void main(String[] args) {
-        // Call func within the main method and print the result
-        System.out.print(func(9));
     }
 }
 
