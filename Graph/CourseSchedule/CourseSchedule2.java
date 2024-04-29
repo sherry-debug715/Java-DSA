@@ -5,7 +5,10 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+// Lintcode problem 616: https://www.lintcode.com/problem/616/?fromId=161&_from=collection
 
+// Time: O(V + E)
+// Space: O(N)
 public class CourseSchedule2 {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] topoOrder = new int[numCourses];
