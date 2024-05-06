@@ -3,7 +3,7 @@ package PrefixSum.SubarrSumEqualsToK;
 import java.util.HashMap;
 // Time: O(N)
 // Space: O(N)
-public class partTwo {
+public class PartTwo {
     public int subarraySumEqualsKII(int[] nums, int k) {
         // edge case 
         if (nums == null || nums.length == 0) {
