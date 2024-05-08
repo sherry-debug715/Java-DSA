@@ -39,7 +39,7 @@ public class CloneGraph {
     }
 
     private Map<UndirectedGraphNode, UndirectedGraphNode> formGraph(UndirectedGraphNode node) {
-        Map<UndirectedGraphNode, UndirectedGraphNode> graph = new HashMap<>();
+        Map<UndirectedGraphNode, UndirectedGraphNode> graph = new HashMapVersion<>();
         Set<UndirectedGraphNode> visited = new HashSet<>();
         // bfs 
         Queue<UndirectedGraphNode> queue = new LinkedList<>();

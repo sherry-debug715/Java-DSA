@@ -1,4 +1,4 @@
-package LinkedList;
+package LinkedList.CopyListWithRandomPointer;
 
 import java.util.HashMap;
 
@@ -14,13 +14,13 @@ class Node {
     }
 }
 
-public class CopyRandomList {
+public class HashMapVersion {
     public Node copyRandomList(Node head) {
     if (head == null) {
         return null;
     }
 
-    HashMap<Node, Node> oldToNew = new HashMap<>();
+    HashMapVersion<Node, Node> oldToNew = new HashMapVersion<>();
     Node cur = head;
 
     // iterate over linked list to build new node refs
