@@ -1,10 +1,10 @@
-package BinaryTree;
+package BinaryTree.ConvertBTtoList;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
+// Lintcode 242: https://www.lintcode.com/problem/242
 class TreeNode {
     public int val;
     public TreeNode left, right;

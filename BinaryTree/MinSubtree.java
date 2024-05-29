@@ -1,5 +1,7 @@
 package BinaryTree;
 
+import BinaryTree.ConvertBTtoList.TreeNode;
+
 public class MinSubtree {
     class Record {
         int curSum;

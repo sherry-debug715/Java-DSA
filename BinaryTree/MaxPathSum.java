@@ -30,6 +30,7 @@ public class MaxPathSum {
         int rightSum = _maxPathSum(node.right);
         maxSum = Math.max(maxSum, leftSum + rightSum + node.val);
         int curMax = Math.max(leftSum, rightSum) + node.val;
+        // if curMax is less than one, then don't count that branch in
         return curMax > 0 ? curMax : 0;
 
     }

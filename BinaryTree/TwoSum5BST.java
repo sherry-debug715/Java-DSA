@@ -1,4 +1,7 @@
 package BinaryTree;
+
+import BinaryTree.ConvertBTtoList.TreeNode;
+
 // Time: O(NlogN);
 // Space: O(1);
 public class TwoSum5BST {

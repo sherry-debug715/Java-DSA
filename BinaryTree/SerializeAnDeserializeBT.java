@@ -1,5 +1,7 @@
 package BinaryTree;
 
+import BinaryTree.ConvertBTtoList.TreeNode;
+
 public class SerializeAnDeserializeBT {
     List<String> tree = new ArrayList<>();
     public String serialize(TreeNode root) { // O(N) Time, O(N) Space

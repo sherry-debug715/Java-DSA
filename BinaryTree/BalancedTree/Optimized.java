@@ -46,3 +46,38 @@ public class Optimized {
         return new ResultType(true, curHeight);
     }
 }
+// method 2
+class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if this Binary tree is Balanced, or false.
+     */
+    class Result {
+        boolean isBalanced;
+        int curH;
+        public Result(boolean _isBalanced, int _curH) {
+            isBalanced = _isBalanced;
+            curH = _curH;
+        }
+    }
+
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        Result res = exploreTree(root);
+        return res.isBalanced;
+    }
+    private Result exploreTree(TreeNode root) {
+        if (root == null) {
+            return new Result(true, 0);
+        }
+
+        Result left = exploreTree(root.left);
+        Result right = exploreTree(root.right);
+        int curHeight = Math.max(left.curH, right.curH) + 1;
+        boolean isBalanced = Math.abs(right.curH - left.curH) <= 1;
+        return new Result(isBalanced && left.isBalanced && right.isBalanced, curHeight);
+    }
+}

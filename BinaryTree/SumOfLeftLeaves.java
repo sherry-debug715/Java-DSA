@@ -1,4 +1,7 @@
 package BinaryTree;
+
+import BinaryTree.ConvertBTtoList.TreeNode;
+
 // Leetcode problem 404: https://leetcode.com/problems/sum-of-left-leaves/
 public class SumOfLeftLeaves {
     int leafSum = 0;

@@ -1,4 +1,7 @@
 package BinaryTree;
+
+import BinaryTree.ConvertBTtoList.TreeNode;
+
 // lintcode 578: https://www.lintcode.com/problem/578/?fromId=161&_from=collection
 // Time: O(N)
 // Space: O(1)

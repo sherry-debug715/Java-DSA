@@ -1,4 +1,4 @@
-package BinaryTree;
+package BinaryTree.ConvertIntoBST;
 // Lintcode problem 177: https://www.lintcode.com/problem/177/
 
 class TreeNode {

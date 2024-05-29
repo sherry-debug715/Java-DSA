@@ -2,7 +2,9 @@ package BinaryTree;
 
 import java.util.ArrayList;
 import java.util.List;
-
+// Lintcode 650: https://www.lintcode.com/problem/650/
+// Time: O(N)
+// Space: O(N)
 class TreeNode {
     public int val;
     public TreeNode left, right;
@@ -14,36 +16,32 @@ class TreeNode {
 
 public class FindLeaves {
     public List<List<Integer>> findLeaves(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
-        // edge case
+        List<List<Integer>> output = new ArrayList<>();
         if (root == null) {
-            return res;
+            return output;
         }
-        dfs(root, res);
-        return res;
+
+        exploreTree(root, output);
+        return output;
     }
 
-    private int dfs(TreeNode node, List<List<Integer>> res) {
-        // exist
-        if (node == null) {
-            // level below leaf nodes is -1
-            return -1;
+    private int exploreTree(TreeNode root, List<List<Integer>> output) {
+        if (root == null) {
+            return 0;
         }
 
-        int left = dfs(node.left, res);
-        int right = dfs(node.right, res);
+        int left = exploreTree(root.left, output); 
+        int right = exploreTree(root.right, output); 
         int curLevel = 1 + Math.max(left, right);
-        // add leaf nodes to res 
-        addToRes(res, curLevel, node.val);
+        insertLevel(curLevel, output, root);
         return curLevel;
     }
 
-    private void addToRes(List<List<Integer>> res,
-                     int curLevel,
-                     int val) {
-        if (curLevel == res.size()) {
-            res.add(new ArrayList<Integer>());
+    private void insertLevel(int level, List<List<Integer>> output, TreeNode root) {
+        if (output.size() < level) {
+            output.add(new ArrayList<Integer>());
         }
-        res.get(curLevel).add(val);
-    } 
+
+        output.get(level - 1).add(root.val);
+    }
 }
