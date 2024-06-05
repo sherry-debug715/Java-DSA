@@ -91,7 +91,55 @@ public class FindWord {
     // {
     //     a=[5, 17], b=[0], c=[1], d=[6, 13, 19], 
     //     f=[10], g=[3], h=[14], i=[11], j=[8, 20], k=[15], l=[16], o=[2, 9], s=[7, 12, 18], t=[4]
-    // }
-    
-    
+    // } 
+}
+
+// method 2 
+class Solution {
+    /**
+     * @param str: the string
+     * @param dict: the dictionary
+     * @return: return words which  are subsequences of the string
+     */
+    public List<String> findWords(String str, List<String> dict) {
+        List<String> output = new ArrayList<>();
+        Map<Character, List<Integer>> charIdxMap = new HashMap<>();
+        populateCharIdxMap(charIdxMap, str);
+
+        for (String word : dict) {
+            int prevIdx = -1;
+            int i = 0;
+            while (i < word.length()) {
+                char c = word.charAt(i);
+                boolean found = false;
+                if (!charIdxMap.containsKey(c)) {
+                    break;
+                }
+                for (int idx : charIdxMap.get(c)) {
+                    if (idx > prevIdx) {
+                        prevIdx = idx;
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    i += 1;
+                } else {
+                    break;
+                }
+            }
+            if (i == word.length()) {
+                output.add(word);
+            }
+        }
+        return output;
+    }
+
+    private void populateCharIdxMap( Map<Character, List<Integer>> charIdxMap, String str) {
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            charIdxMap.putIfAbsent(c, new ArrayList<Integer>());
+            charIdxMap.get(c).add(i);
+        }
+    }
 }
