@@ -29,6 +29,7 @@ public class MaximumAverageSubarr2 {
         }
 
         for (int i = k; i <= nums.length; i++) {
+            // when i == nums.length, need to do a final check for rightSum - minLeftSum
             if (rightSum - minLeftSum >= 0) {
                 return true;
             }
