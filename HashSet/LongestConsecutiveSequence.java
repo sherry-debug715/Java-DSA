@@ -6,28 +6,25 @@ import java.util.Set;
 // Space: O(N);
 public class LongestConsecutiveSequence {
     public int longestConsecutive(int[] num) {
-        if (num == null || num.length == 0) {
-            return 0;
-        }
-        int maxCount = 0;
-        Set<Integer> storage = new HashSet<>();
+        // set for constant look up time 
+        Set<Integer> numSet = new HashSet<>();
         for (int n : num) {
-            storage.add(n);
+            numSet.add(n);
         }
 
+        int maxLen = 1;
         for (int n : num) {
-            // only calcute in increasing order, to avoid repetitive counting. 
-            if (storage.contains(n - 1)) {
+            if (numSet.contains(n - 1) || !numSet.contains(n + 1)) {
                 continue;
             }
-            int curCount = 1;
-            int curNum = n;
-            while (storage.contains(curNum + 1)) {
-                curCount += 1;
-                curNum += 1;
+            int curN = n;
+            int count = 0;
+            while (numSet.contains(curN)) {
+                curN += 1;
+                count += 1;
             }
-            maxCount = Math.max(maxCount, curCount);
+            maxLen = Math.max(maxLen, count);
         }
-        return maxCount;
+        return maxLen;
     }
 }

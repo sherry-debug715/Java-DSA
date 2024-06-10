@@ -1,26 +1,33 @@
 package TwoPointers;
 // Lintcode problem 1375: https://www.lintcode.com/course/101/learn/1375?chapterId=534&sectionId=3979&ac=true
+// Time: O(N)
+// Space: O(N) -> N is the number of unique characters in a substring
+import java.util.Map;
 
 public class SubstrWithAtLeastKDistinctChars {
     public long kDistinctCharacters(String s, int k) {
         long output = 0;
-        Map<Character, Integer> counter = new HashMap<>();
-        int n = s.length();
-        int j = 0;
-        for (int i = 0; i < n; i++) {
-            while (counter.size() < k && j < n) {
-                char currentChar = s.charAt(j);
-                counter.put(currentChar, counter.getOrDefault(currentChar, 0) + 1);
-                j += 1;
-            }
-            if (counter.size() >= k) {
-                output += (long) n - j + 1;
-                // update i pointer in counter 
-                char iChar = s.charAt(i);
-                counter.put(iChar, counter.get(iChar) - 1);
-                if (counter.get(iChar) == 0) {
-                    counter.remove(iChar);
+        if (s.length() == 0 || k == 0) {
+            return output;
+        }
+
+        Map<Character, Integer> charMap = new HashMap<>();
+        int uniqueCount = 0;
+        int r = 0;
+        for (int l = 0; l < s.length(); l++) {
+            while (r < s.length() && uniqueCount < k) {
+                charMap.put(s.charAt(r), charMap.getOrDefault(s.charAt(r), 0) + 1);
+                if (charMap.get(s.charAt(r)) == 1) {
+                    uniqueCount += 1;
                 }
+                r += 1;
+            }
+            if (uniqueCount >= k) {
+                output += s.length() - r + 1;
+            }
+            charMap.put(s.charAt(l), charMap.get(s.charAt(l)) - 1);
+            if (charMap.get(s.charAt(l)) == 0) {
+                uniqueCount -= 1;
             }
         }
         return output;

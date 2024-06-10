@@ -2,6 +2,7 @@ package TwoPointers;
 
 import java.util.Set;
 import java.util.HashSet;
+// Lintcode 384 
 
 public class LongestSubstrWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
