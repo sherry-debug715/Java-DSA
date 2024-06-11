@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Methos2 {
     // Time: O(NlogN);
     // Space: O(1)
+    // approach: use two pointer method to locate the left max radius of the current house 
     public int findRadius(int[] houses, int[] heaters) {
         Arrays.sort(houses);
         Arrays.sort(heaters);
