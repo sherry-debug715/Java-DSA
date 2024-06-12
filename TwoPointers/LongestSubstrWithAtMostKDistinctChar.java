@@ -10,8 +10,8 @@ public class LongestSubstrWithAtMostKDistinctChar {
 
         int output = 0;
         int[] charCounter = new int[256];
-        for (int l = 0, r = 0, unique = 0; l < s.length();) {
-            if (r < s.length() && unique <= k) {
+        for (int l = 0, r = 0, unique = 0; r < s.length();) {
+            if (unique <= k) {
                 char c = s.charAt(r);
                 r += 1;
                 charCounter[c] += 1;

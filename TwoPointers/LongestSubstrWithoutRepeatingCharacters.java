@@ -3,7 +3,8 @@ package TwoPointers;
 import java.util.Set;
 import java.util.HashSet;
 // Lintcode 384 
-
+// Time: O(N)
+// Space: O(1)  since characters are English letters, and there can at most be 52 letters (Upper and Lowercase )
 public class LongestSubstrWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
         if (s.length() == 0) {
