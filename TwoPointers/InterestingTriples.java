@@ -37,3 +37,27 @@ public class InterestingTriples {
         return false;
     }
 }
+
+// Solution 2 
+class Solution {
+    /**
+     * @param nums: 
+     * @return: Returns the existence of an interesting triplet
+     */
+    public boolean getFunTuple(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return false;
+        }
+        Stack<Integer> stack = new Stack<>();
+        for (int n : nums) {
+            while(!stack.isEmpty() && n <= stack.peek()) {
+                stack.pop();
+            }
+            stack.push(n);
+            if (stack.size() >= 3) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

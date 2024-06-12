@@ -1,26 +1,30 @@
 package TwoPointers;
-
+// Time: O(N)
+// Space: O(1)
 public class LongestRepeatingCharacterReplacement {
     public int characterReplacement(String s, int k) {
         if (s == null || s.length() == 0) {
             return 0;
         }
+
+        int[] charMap = new int[26];
+        int maxCharLen = 1;
+        int l = 0;
         int maxLen = 0;
-        int maxChar = 0;
-        int left = 0;
-        Map<Character, Integer> charCounter = new HashMap<>();
-        
-        for (int i = 0; i < s.length(); i++) { // i is right pointer 
-            char curChar = s.charAt(i);
-            charCounter.put(curChar, charCounter.getOrDefault(curChar, 0) + 1);
-            // update maxChar 
-            maxChar = Math.max(maxChar, charCounter.get(curChar));
-            while (left < s.length() && i - left + 1 - maxChar > k) {
-                charCounter.put(s.charAt(left), charCounter.get(s.charAt(left)) - 1);
-                maxChar = Math.max(maxChar, charCounter.get(s.charAt(left)));
-                left += 1;
+
+        for (int r = 0; r < s.length(); r++) { // O(N)
+            char cr = s.charAt(r);
+            charMap[cr - 'A'] += 1;
+            maxCharLen = Math.max(maxCharLen, charMap[cr - 'A']);
+            while (l < s.length() && r - l + 1 - maxCharLen > k) {
+                // while incrementing left pointer, there is no need to 
+                // update maxCharLen, because right pointer is not moved
+                // therefore the current substring length will never exceed maxLen.
+                char cl = s.charAt(l);
+                charMap[cl - 'A'] -= 1;
+                l += 1;
             }
-            maxLen = Math.max(maxLen, i - left + 1);
+            maxLen = Math.max(r - l + 1, maxLen);
         }
         return maxLen;
     }
