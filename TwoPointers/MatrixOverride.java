@@ -1,7 +1,16 @@
 package TwoPointers;
 
 import java.util.Stack;
-
+// lintcode 3547 
+// Description
+// Now there is an array of integers heights, given some rectangles placed horizontally adjacent from left to right at the height of heights[i]（0≤i<heights.length） and do not overlap each other, and below on the same horizontal line, you can completely cover the rectangle with a matrix of any size, but not cover the blank part, and do not allow to cover the same part repeatedly, find the minimum number of matrices needed, so as to completely cover the given rectangle.
+// Example:
+// Input:
+// heights = [13, 16, 14, 13]
+// Output:
+// 3
+// Time: O(N)
+// Space: O(N)
 public class MatrixOverride {
         // Stack is strictly increasing 
         public int minCount(int[] heights) {

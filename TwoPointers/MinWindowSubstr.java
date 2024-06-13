@@ -11,7 +11,7 @@ public class MinWindowSubstr {
         int minLen = Integer.MAX_VALUE;
         int targetSize = target.length();
         Map<Character, Integer> charMap = new HashMap<>();
-        int curSize = 0;
+        int curSize = 0; // keep track of the number of target chars in current window 
         // populate charCounter with the number of char of target 
         for (int i = 0; i < targetSize; i++) {
             char c = target.charAt(i);
@@ -24,6 +24,7 @@ public class MinWindowSubstr {
                 continue;
             }
             r = Math.max(l, r);
+            // expande window 
             while (r < source.length() && curSize < targetSize) {
                 char rc = source.charAt(r);
                 if (charMap.containsKey(rc)) {
@@ -34,7 +35,9 @@ public class MinWindowSubstr {
                 }
                 r += 1;
             }
-            // end while 
+            // end while
+            // either r is at the end or curSize == target.length() 
+
             if (curSize == targetSize) {
                 if (r - l < minLen) {
                     minLen = r - l;
