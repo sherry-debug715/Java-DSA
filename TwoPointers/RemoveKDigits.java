@@ -4,7 +4,7 @@ package TwoPointers;
 // Space: O(1)
 public class RemoveKDigits {
     public String removeKdigits(String num, int k) {
-        if (k >= num.length()) {
+        if (k == num.length()) {
             return "0";
         }
         
@@ -25,7 +25,7 @@ public class RemoveKDigits {
         while (start < len && list[start] == '0') {
             start += 1;
         }
-
+        // new String(targetArr, int startIndex, int count)
         return start == len ? "0" : new String(list, start, len - start);
     }
 }
