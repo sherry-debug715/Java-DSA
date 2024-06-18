@@ -11,7 +11,7 @@ class GridType {
     static int EMPTY = 0;
 }
 
-public class BFS {
+public class SpaceToHouses {
         int[][] POS = {
         {-1, 0},
         {1, 0},
