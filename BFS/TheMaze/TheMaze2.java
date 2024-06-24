@@ -1,5 +1,5 @@
 package BFS.TheMaze;
-
+// Lintcode 788
 public class TheMaze2 {
     class Point {
         int row;
