@@ -29,6 +29,17 @@ public class WordSquares {
         }
 
         int curIdx = curMatrix.size(); // curIdx is the idx of the current prefix index 
+        // pruning: for each word that's added to curMatrix, for example, when curMatrix = ["ball"], we also know the first column is also "ball", therefore, pruning is to check if words with prefixes of a, l, l exists.
+        for (int i = curIdx; i < n; i++) {
+            StringBuilder prefix = new StringBuilder();
+            for (int j = 0; j < curIdx; j++) {
+                prefix.append(curMatrix.get(j).charAt(i));
+            }
+            if (!prefixToWord.containsKey(prefix.toString())) {
+                return;
+            }
+        }
+
         StringBuilder prefix = new StringBuilder();
 
         for (int i = 0; i < curIdx; i++) {
