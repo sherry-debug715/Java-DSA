@@ -36,10 +36,10 @@ public class ConvertSortedListIntoBST {
             return null;
         }
 
-        ListNode mid = findMid(head, tail);
+        ListNode mid = findMid(head, tail); // O(N) n is the length of linked list.
         TreeNode root = new TreeNode(mid.val);
-        root.left = formTree(head, mid);
-        root.right = formTree(mid.next, tail);
+        root.left = formTree(head, mid); // O(N log N)
+        root.right = formTree(mid.next, tail); // O(N log N)
         return root;
     }
 

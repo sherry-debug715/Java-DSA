@@ -5,33 +5,34 @@ import java.util.List;
 
 // lintcode 427
 public class GenerateParentheses {
+    List<String> output = new ArrayList<>();
     public List<String> generateParenthesis(int n) {
-        List<String> output = new ArrayList<>();
-        dfs(n, 0, 0, new ArrayList<String>(), output);
+        if (n == 0) {
+            return output;
+        }
+        dfs(n, 0, 0, new StringBuilder());
         return output;
     }
 
-    private void dfs(int n, int open, int close, List<String> curSet, List<String> output) {
-        if (close > open) {
-            return;
-        }
-        if (open > n) {
-            return;
-        }
+    private void dfs(int n, int open, int close, StringBuilder curSet) {
         if (open == n && close == n) {
-            output.add(String.join("", curSet));
+            output.add(curSet.toString());
+            return;
+        }
+
+        if (close > open || open > n) {
             return;
         }
 
         if (open < n && open >= close) {
-            curSet.add("(");
-            dfs(n, open + 1, close, curSet, output);
-            curSet.remove(curSet.size() - 1);
+            curSet.append("(");
+            dfs(n, open + 1, close, curSet);
+            curSet.deleteCharAt(curSet.length() - 1);
         }
         if (close < open) {
-            curSet.add(")");
-            dfs(n, open, close + 1, curSet, output);
-            curSet.remove(curSet.size() - 1);
+            curSet.append(")");
+            dfs(n, open, close + 1, curSet);
+            curSet.deleteCharAt(curSet.length() - 1);
         }
     }
 }

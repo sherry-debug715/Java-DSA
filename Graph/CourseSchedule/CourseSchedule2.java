@@ -1,5 +1,7 @@
 package Graph.CourseSchedule;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -16,7 +18,7 @@ public class CourseSchedule2 {
         Map<Integer, Integer> indegrees = formDegree(graph); 
 
         // bfs 
-        Queue<Integer> queue = new LinkedList<>();
+        Deque<Integer> queue = new ArrayDeque<>();
         for (int c : indegrees.keySet()) {
             if (indegrees.get(c) == 0) {
                 queue.offer(c);
