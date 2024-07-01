@@ -30,11 +30,12 @@ public class LongestPathOnTheTree {
                 if (!longestLeafToRoot.containsKey(parent)) { // when curNode is leaf nodes
                     continue; 
                 }
-                if (graph[curNode].get(parent) + longestLeafToRoot.get(parent) > maxPath) {
+                int curDistance = graph[curNode].get(parent) + longestLeafToRoot.get(parent);
+                if (curDistance > maxPath) {
                     secondMaxPath = maxPath;
-                    maxPath = graph[curNode].get(parent) + longestLeafToRoot.get(parent);
-                } else if (graph[curNode].get(parent) + longestLeafToRoot.get(parent) > secondMaxPath) {
-                    secondMaxPath = graph[curNode].get(parent) + longestLeafToRoot.get(parent);
+                    maxPath = curDistance;
+                } else if (curDistance > secondMaxPath) {
+                    secondMaxPath = curDistance;
                 }
             }
             longestLeafToRoot.put(curNode, Math.max(maxPath, 0)); // 0 is for leaf nodes 
