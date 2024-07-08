@@ -1,5 +1,6 @@
 package DP.Coordinates;
-
+// lintcode 115 
+// Time: O(m * n)
 public class UniquePath2 {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         if (obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0][0] == 1) {
