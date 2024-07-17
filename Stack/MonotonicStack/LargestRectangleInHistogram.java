@@ -7,23 +7,22 @@ import java.util.Stack;
 
 public class LargestRectangleInHistogram {
     public int largestRectangleArea(int[] heights) {
-        int maxArea = -1;
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < heights.length + 1; i++) {
-            int curHeight = i == heights.length ? -1 : heights[i];
-            if (stack.isEmpty()) {
-                stack.push(i);
-                continue;
-            }
-            // when found a right end 
+        if (heights == null || heights.length == 0) {
+            return 0;
+        }
+        int maxArea = 0;
+        int n = heights.length;
+        Stack<Integer> stack = new Stack<>(); // stack of indexes 
+        for (int i = 0; i <= n; i++) {
+            int curHeight = i == n ? Integer.MIN_VALUE : heights[i];
             while (!stack.isEmpty() && curHeight < heights[stack.peek()]) {
-                int h = heights[stack.pop()];
-                // now stack.peek() is the index of first height <= h 
-                int w = stack.isEmpty() ? i : i - stack.peek() - 1;
-                maxArea = Math.max(maxArea, h * w); 
+                int height = heights[stack.pop()];
+                int width = stack.isEmpty() ? i : i - stack.peek() - 1;
+                maxArea = Math.max(maxArea, height * width);
             }
             stack.push(i);
         }
+
         return maxArea;
     }
 }
