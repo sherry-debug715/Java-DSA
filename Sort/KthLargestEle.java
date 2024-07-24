@@ -1,35 +1,30 @@
 package Sort;
+// lintcode 5
 // Time: average O(N) worst O(N^2) 
 // Space: O(logN) for stack space
 public class KthLargestEle {
-    public int kthLargestElement(int k, int[] nums) {
-        // edge case 
-        if (k > nums.length || nums.length == 0 || nums == null) {
+    public int findKthLargest(int[] nums, int k) {
+        if (nums == null || nums.length == 0 || k < 1 || k > nums.length){
             return -1;
         }
-
-        return quickSelect(k, 0, nums.length - 1, nums);
+        return quickSelect(0, nums.length - 1, nums.length - k, nums);
     }
-
-    private int quickSelect(int k, int start, int end, int[] nums) {
+    
+    private int quickSelect(int start, int end, int k, int[] nums) {
         if (start >= end) {
-            return nums[start];
+            return nums[k];
         }
-
-        int left = start;
-        int right = end;
-        int mid = nums[start + (end - start) / 2];
-
-        // sort numbers > mid to the left, nums < mid to the right 
+        
+        int pivot = nums[start + (end - start) / 2];
+        int left = start, right = end;
         while (left <= right) {
-            while (left <= right && nums[left] > mid) {
+            while (left <= right && nums[left] < pivot) {
                 left += 1;
             }
-            while (left <= right && nums[right] < mid) {
+            while (left <= right && nums[right] > pivot) {
                 right -= 1;
             }
             if (left <= right) {
-                // swap 
                 int temp = nums[left];
                 nums[left] = nums[right];
                 nums[right] = temp;
@@ -37,14 +32,13 @@ public class KthLargestEle {
                 right -= 1;
             }
         }
-
-        // check if k is on the left or right portion 
-        if (start + k - 1 <= right) {
-            return quickSelect(k, start, right, nums);
+        
+        if (k <= right) {
+            return quickSelect(start, right, k, nums);
         }
-        if (start + k - 1 >= left) {
-            return quickSelect(k - (right - start + 1), left, end, nums);
-        } 
-        return nums[right + 1];
+        if (k >= left) {
+            return quickSelect(left, end, k, nums);
+        }
+        return nums[k];
     }
 }
