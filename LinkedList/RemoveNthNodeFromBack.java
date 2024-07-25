@@ -23,7 +23,7 @@ public class RemoveNthNodeFromBack {
             slow = slow.next;
             fast = fast.next;
         }
-
+        // if the head is to be removed, that means slow is still referencing dummy, so setting slow.next  to slow.next.next is equavelent of dummy.next = dummy.next.next
         slow.next = slow.next.next;
         return dummy.next;
     }
