@@ -1,5 +1,7 @@
 package BinarySearch;
-
+// Lintcode 460 
+// Time: O(logN + k)
+// Space: O(k)
 public class FindkClosestEle {
     public int[] kClosestNumbers(int[] a, int target, int k) {
         // edge case 
