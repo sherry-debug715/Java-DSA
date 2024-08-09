@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 // lintcode 431 
+// Time: 751ms
+// Space: 29.71 mb
 public class Bfs {
     public List<List<Integer>> connectedSet(List<UndirectedGraphNode> nodes) {
         List<List<Integer>> output = new ArrayList<>();

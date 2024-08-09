@@ -11,26 +11,20 @@ public class KthSmallestEleInBST {
             return -1;
         }
 
-        TreeNode dummy = new TreeNode(-1);
-        dummy.right = root;
+        TreeNode curr = root;
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(dummy);
 
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            if (node.right != null) {
-                node = node.right;
-                while (node != null) {
-                    stack.push(node);
-                    node = node.left;
-                }
+        while(curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
             }
-            if (!stack.isEmpty()) {
-                k -= 1;
-                if (k == 0) {
-                    return stack.peek().val;
-                }
+            if (k == 1) {
+                return stack.pop().val;
             }
+            curr = stack.pop();
+            k -= 1;
+            curr = curr.right;
         }
         return -1;
     }

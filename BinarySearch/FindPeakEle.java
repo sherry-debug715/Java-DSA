@@ -1,4 +1,5 @@
 package BinarySearch;
+// Lintcode 75
 // Time: O(logN)
 // Space: O(1)
 public class FindPeakEle {

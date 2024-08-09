@@ -1,7 +1,7 @@
 package String;
 // Leetcode 1071: https://leetcode.com/problems/greatest-common-divisor-of-strings/
-// Time: O(N)
-// Space: O(1)
+// Time: O(N) 1ms 
+// Space: O(1) 41.77mb
 public class GreatestCommonDivisorOfStr {
     public String gcdOfStrings(String str1, String str2) {
         String shorter = str1, longer = str2;
@@ -23,21 +23,23 @@ public class GreatestCommonDivisorOfStr {
     }
     
     private boolean validDivisor(int idx, String shorter, String longer) {
-        // check if valid middle of shorter
+        String targetStr = shorter.substring(0, idx + 1);
+        // check if idx is a valid divisor for shorter itself
         int p1 = 0;
-        for (int i = 0; i < shorter.length() / (idx + 1); i++) {
-            if (!shorter.substring(0, idx + 1).equals(shorter.substring(p1, p1 + idx + 1))) {
+        while (p1 < shorter.length()) {
+            if (!targetStr.equals(shorter.substring(p1, p1 + idx + 1))) {
                 return false;
             }
             p1 += idx + 1;
         }
-        int p2 = 0;
-        // check if valid middle of longer 
-        for (int i = 0; i < longer.length() / (idx + 1); i++) {
-            if (!shorter.substring(0, idx + 1).equals(longer.substring(p2, p2 + idx + 1))) {
+
+        // check if targetStr is a valid divisor for longer 
+        p1 = 0;
+        while (p1 < longer.length()) {
+            if (!targetStr.equals(longer.substring(p1, p1 + idx + 1))) {
                 return false;
             }
-            p2 += idx + 1;
+            p1 += idx + 1;
         }
         return true;
     }

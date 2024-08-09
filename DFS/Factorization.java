@@ -16,6 +16,7 @@ public class Factorization {
 
     private void dfs(int start, int remain) {
         if (remain == 1) {
+            // when curFactor don't have just n in it 
             if (curFactor.size() != 1) {
                 output.add(new ArrayList<>(curFactor));
             }
@@ -23,6 +24,7 @@ public class Factorization {
         }
 
         for (int i = start; i <= remain; i++) {
+            // when i > remain / i, remain is the last prime for curFactor 
             if (i > remain / i) {
                 break;
             }
@@ -34,6 +36,7 @@ public class Factorization {
         }
 
         curFactor.add(remain);
+        // add to res 
         dfs(remain, 1);
         curFactor.remove(curFactor.size() - 1);
     }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 // lintcode 431 
-
+// time: 801ms
 public class UnionFind {
     class UnionFind {
         Map<Integer, Integer> parents;

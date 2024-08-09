@@ -11,11 +11,10 @@ public class BinarySubarrWithSum {
         int n = a.length;
         int l1 = 0, l2 = 0;
         int sum1 = 0, sum2 = 0;
-        // l1 is the left pointer, l2 is the right pointer of the subarray that when 
-        // matched with r, their sums equals to s 
+        // a[l1:l2) when pairs with a[l2 + 1: r] == s
         for (int r = 0; r < n; r ++) {
-            // a[l1: l2) is the subarray when matched with r == s  
             sum1 += a[r]; 
+            // a[l1:r] maintains <= s 
             while (l1 <= r && sum1 > s) {
                 sum1 -= a[l1];
                 l1 += 1;

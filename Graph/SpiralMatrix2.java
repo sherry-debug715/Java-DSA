@@ -1,6 +1,6 @@
 package Graph;
-// Time: O(M*N)
-// Space: O(M*N)
+// Time: O(M*N) 0ms
+// Space: O(M*N) 41.37mb
 // Leetcode problem 59: https://leetcode.com/problems/spiral-matrix-ii/
 public class SpiralMatrix2 {
     public int[][] generateMatrix(int n) {
