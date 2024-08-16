@@ -4,15 +4,22 @@ import java.util.List;
 import java.util.Queue;
 
 public class Main {
-    public class Solution {
-        /**
-         * @param n: An integer
-         * @param edges: a list of undirected edges
-         * @return: true if it's a valid tree, or false
-         */
-
-        
+    private String name;
+    private int age;
+    public String getName() {
+        return name;
     }
+    public int getAge() {
+        return age;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    
 }
 
 
