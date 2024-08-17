@@ -29,3 +29,29 @@ public class KthSmallestEleInBST {
         return -1;
     }
 }
+
+// Recursion 
+// Time: O(n)
+// Space: O(stack)
+class Solution {
+    int res = 0;
+    int counter = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        dfs(root, k);
+        return res;
+    }
+
+    private void dfs(TreeNode root, int k) {
+        if (root == null) {
+            return;
+        }
+
+        dfs(root.left, k);
+        counter += 1;
+        if (counter == k) {
+            res = root.val;
+            return;
+        }
+        dfs(root.right, k);
+    }
+}
