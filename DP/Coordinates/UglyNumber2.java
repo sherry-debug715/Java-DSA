@@ -6,7 +6,7 @@ public class UglyNumber2 {
         // dp[i] is the next smallest ugly number of dp[i - 1]
         long[] dp = new long[n];
         dp[0] = 1L;
-        // each pointers is representing the factors of each prime number 
+        // each pointers epresent the factors of each prime number 
         int l2 = 0, l3 = 0, l5 = 0;
 
         for (int i = 1; i < n; i++) {
