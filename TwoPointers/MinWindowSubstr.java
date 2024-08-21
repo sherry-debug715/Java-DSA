@@ -2,7 +2,8 @@ package TwoPointers;
 
 import java.util.Map;
 
-// Lintcode 32
+// Lintcode 32 
+/// Leetcode 76
 // Time: O(N)
 // Space: O(N)
 public class MinWindowSubstr {
