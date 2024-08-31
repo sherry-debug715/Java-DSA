@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 // Leetcode 1514
+// Solution 1: Dijkstra 
 public class PathWithMaxProbability {
         public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
         // Create a graph as an adjacency list
@@ -54,5 +55,35 @@ public class PathWithMaxProbability {
         
         // If end_node is unreachable, return 0
         return 0.0;
+    }
+}
+
+// Solution 2: Bellman-ford algorithmn
+// Time: O(9 * number of Edges)
+// Space: O(n)
+class Solution {
+    // bellman-ford algorithmn
+    public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
+        double[] maxProb = new double[n];
+        Arrays.fill(maxProb, 0.0); // fill with 0.0 because we are looking for the longest distance 
+        // max probability to go from start_node to start_node is 1.0
+        maxProb[start_node] = 1.0;
+
+        for (int i = 0; i < 9; i++) { // guessing that 9 iteration is enough to achieve the answer 
+            for (int j = 0; j < edges.length; j++) {
+                int node1 = edges[j][0], node2 = edges[j][1];
+                double weight = succProb[j];
+                // check probability of node1 to node2 
+                if (maxProb[node1] * weight > maxProb[node2]) {
+                    maxProb[node2] = maxProb[node1] * weight;
+                }
+                // check probability of node2. to node1 
+                if (maxProb[node2] * weight > maxProb[node1]) {
+                    maxProb[node1] = maxProb[node2] * weight;
+                }
+            }
+        }
+
+        return maxProb[end_node];
     }
 }
