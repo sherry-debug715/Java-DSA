@@ -1,5 +1,6 @@
 package DP.Coordinates;
 
+// Lintcode 4
 public class UglyNumber2 {
      // Time: O(n) because we process each number once 
      // Space: O(n) to store the array of ugly numbers 
