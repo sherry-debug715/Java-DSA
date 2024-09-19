@@ -11,27 +11,33 @@ class TreeNode {
 }
 
 public class MaxPathSum {
-    private int maxSum = Integer.MIN_VALUE;
+    /**
+     * @param root: The root of binary tree.
+     * @return: An integer
+     */
+    // Time: O(N) where n is the total number of nodes in the tree 
+    // Space: O(H) where h is the height of tree for stack space 
+
+    // maxPath is the path with max sum of weights of nodes 
+    int maxPath = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
+        calculateMaxPathSum(root);
+        return maxPath;
+    }
+
+    // return the max branch sum of root while updating maxPath 
+    private int calculateMaxPathSum(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
-        _maxPathSum(root);
-        return maxSum;
-    }
+        // Recursively get the max path sum for left and right branches
+        int leftBranch = Math.max(calculateMaxPathSum(root.left), 0); // ignores negative paths 
+        int rightBranch =  Math.max(calculateMaxPathSum(root.right), 0); // ignores negative paths
+        // update global maxPath 
+        maxPath = Math.max(maxPath, leftBranch + rightBranch + root.val);
 
-    private int _maxPathSum(TreeNode node) {
-        if (node == null) {
-            return 0;
-        }
-
-        int leftSum = _maxPathSum(node.left);
-        int rightSum = _maxPathSum(node.right);
-        maxSum = Math.max(maxSum, leftSum + rightSum + node.val);
-        int curMax = Math.max(leftSum, rightSum) + node.val;
-        // if curMax is less than one, then don't count that branch in
-        return curMax > 0 ? curMax : 0;
-
+        // return the maximum branch sum including the current node value 
+        return root.val + Math.max(leftBranch, rightBranch);
     }
 }
