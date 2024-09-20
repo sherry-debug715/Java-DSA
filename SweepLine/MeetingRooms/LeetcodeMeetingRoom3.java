@@ -5,7 +5,7 @@ import Sort.SortTheJumbledNumbers.java.PriorityQueue;
 // Leetcode 2402 
 // Time: O(NlogN)
 // Space: O(N)
-public class MeetingRoom3 {
+public class LeetcodeMeetingRoom3 {
        public int mostBooked(int n, int[][] meetings) {
         // Step 1: sort meetings by start time, if start time equals, sort by end time
         Arrays.sort(meetings, (a, b) -> {
