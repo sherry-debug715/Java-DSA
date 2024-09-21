@@ -1,36 +1,46 @@
 package SweepLine;
+
+import java.util.Arrays;
+
 // Lintcode 1379 
 public class TheLongestScene {
-    // Time: O(2n) where n is the length of str 
+     // Time: O(26n) where n is the length of str 
      // Space: O(n) where n is the length of str 
-     public int getLongestScene(String str) {
+    public int getLongestScene(String str) {
         if (str.length() <= 1) {
             return str.length(); // Handle cases where string length is 0 or 1
         }
 
         char[] charArr = str.toCharArray();
-        int[] farthestIndex = new int[26]; // Stores the farthest occurrence of each character
+        int[][] charIntervals = new int[26][2]; // Stores the first and farthest occurrences of each character
+        for (int i = 0; i < 26; i++) {
+            charIntervals[i][0] = charArr.length;
+            charIntervals[i][1] = -1;
+        }
 
         // Step 1: Fill the farthest index for each character
         for (int i = 0; i < charArr.length; i++) {
-            farthestIndex[charArr[i] - 'a'] = i;
+            int idx = charArr[i] - 'a';
+            charIntervals[idx][0] = Math.min(charIntervals[idx][0], i);
+            charIntervals[idx][1] = Math.max(charIntervals[idx][1], i);
         }
 
-        int maxSceneLength = 0; // Track the maximum scene length
-        int currentStart = 0; // Start of the current scene
-        int currentEnd = farthestIndex[charArr[0] - 'a']; // End of the current scene
+        Arrays.sort(charIntervals, (a, b) -> a[0] - b[0]);
 
-        // Step 2: Traverse the string and find the longest scene
-        for (int i = 0; i < charArr.length; i++) {
-            // Extend the current scene's end if needed
-            currentEnd = Math.max(currentEnd, farthestIndex[charArr[i] - 'a']);
+        int currentStart = charIntervals[0][0]; // Start of the current scene
+        int currentEnd = charIntervals[0][1]; // End of the current scene
+        int maxSceneLength = currentEnd - currentStart + 1; // Track the maximum scene length
 
-            // If the current index reaches the currentEnd, we finish a scene
-            if (i == currentEnd) {
-                // Calculate the length of the current scene
-                int sceneLength = currentEnd - currentStart + 1;
-                maxSceneLength = Math.max(maxSceneLength, sceneLength); // Update max length
-                currentStart = i + 1; // Start a new scene from the next character
+        // Step 2: Traverse the 26 letters 
+        for (int i = 1; i < 26; i++) {
+            if (charIntervals[i][1] != -1 && charIntervals[i][0] < charArr.length) {
+                if (charIntervals[i][0] <= currentEnd) {
+                    currentEnd = Math.max(currentEnd, charIntervals[i][1]);
+                } else {
+                    currentStart = charIntervals[i][0];
+                    currentEnd = charIntervals[i][1];
+                }
+                maxSceneLength = Math.max(maxSceneLength, currentEnd - currentStart + 1);
             }
         }
 
