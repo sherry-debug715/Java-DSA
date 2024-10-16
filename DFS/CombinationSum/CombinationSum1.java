@@ -1,9 +1,9 @@
-package DFS;
+package DFS.CombinationSum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+// Lintcode 135 
 public class CombinationSum1 {
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
         // sort the candidates so when sum of curSet + candidates[i] > tareget
