@@ -1,49 +1,39 @@
-```java
 public class Solution {
-    
-    char[][] patterns = { {'(', ')'}, {')', '('} };
-    
-    public List<String> removeInvalidParentheses(String s) {
-        List<String> ret = new ArrayList<>();
-       
-        dfs(s, 0, 0, patterns[0], ret);
-        return ret;
-    }
-    
-    private void dfs(String s, int start, int lastRemove, char[] pattern, List<String> ret) {
-        int count = 0, n = s.length();
-        for (int i = start; i < n; i ++) {
-            if (s.charAt(i) == pattern[0]) 
-            { 
-                count ++;
+    /**
+     * @param workers: workers' location
+     * @param bikes: bikes' location
+     * @return: assign bikes
+     */
+    public int[] assignBikes(int[][] workers, int[][] bikes) {
+        // write your code here
+        int n = workers.length;
+        int m = bikes.length;
+        int[][] alls = new int[n * m][3];
+        boolean[] vistw = new boolean[n];
+        boolean[] vistb = new boolean[m];
+        List<Integer>[] mapp = new List[2000];
+        int[] ans = new int[n];
+        for (int i = 0; i < 2000; i++)
+            mapp[i] = new ArrayList<Integer>();
+        int cnt = 0;
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++){
+                alls[cnt][0] = Math.abs(workers[i][0]-bikes[j][0])+Math.abs(workers[i][1]-bikes[j][1]);
+                alls[cnt][1] = i;
+                alls[cnt++][2] = j;
             }
-            if (s.charAt(i) == pattern[1]) 
-            { 
-                count --;
-            }
-            if (count < 0) 
-            {
-                for (int j = lastRemove; j <= i; j ++) 
-                {
-                    if (s.charAt(j) == pattern[1] && (j == lastRemove || s.charAt(j) != s.charAt(j - 1))) 
-                    {
-                        dfs(s.substring(0, j) + s.substring(j + 1), i, j, pattern, ret);
-                    }
+        for (int i = 0; i < n * m; i++)
+            mapp[alls[i][0]].add(i);
+        for (int i = 0; i < 2000; i++)
+            for (int j = 0; j < mapp[i].size(); j++){
+                int curworker = alls[mapp[i].get(j)][1];
+                int curbike = alls[mapp[i].get(j)][2];
+                if (!vistw[curworker] && !vistb[curbike]){
+                    ans[curworker] = curbike;
+                    vistw[curworker] = true;
+                    vistb[curbike] = true;
                 }
-                return;
             }
-        }
-
-
-        s = new StringBuilder(s).reverse().toString();
-        if (pattern[0] == patterns[0][0]) 
-        {
-            dfs(s, 0, 0, patterns[1], ret);
-        } 
-        else 
-        { 
-            ret.add(s); 
-        }
+        return ans;
     }
 }
-```
