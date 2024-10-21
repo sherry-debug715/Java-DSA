@@ -42,6 +42,13 @@ public class ReversePairs {
                 temp[index++] = a[left++];
             } else {
                 temp[index++] = a[right++];
+                /*
+                 *     l
+                    [1,6,7]. [3,5] 
+                              r
+                    1. both left portion of subarray and right subarray are sorted 
+                    2. when a[l] > a[r]: all numbers from a[l: mid + 1] must be > a[r]
+                 */
                 sum += mid - left + 1;
             } 
         }
