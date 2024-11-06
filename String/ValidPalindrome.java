@@ -4,26 +4,15 @@ package String;
 // Space: O(1)
 public class ValidPalindrome {
     public boolean isPalindrome(String s) {
-        // edge case 
-        if (s == null) {
-            return false;
-        }
-        if (s == "") {
-            return true;
-        }
-        // two pointer traverse toward middle 
         int left = 0, right = s.length() - 1;
         while (left < right) {
-            // if it's not number or valid alphabetic letter then continue
-            while (left < right && !isValid(left, s)) {
+            while (left < right && convert(s.charAt(left)) == null) {
                 left += 1;
             }
-            while (left < right && !isValid(right, s)) {
+            while (right > left && convert(s.charAt(right)) == null) {
                 right -= 1;
             }
-            char leftChar = Character.toLowerCase(s.charAt(left));
-            char rightChar = Character.toLowerCase(s.charAt(right));
-            if (leftChar != rightChar) {
+            if (left < right && !convert(s.charAt(left)).equals(convert(s.charAt(right))) ) {
                 return false;
             }
             left += 1;
@@ -32,8 +21,16 @@ public class ValidPalindrome {
         return true;
     }
 
-    private boolean isValid(int idx, String s) {
-        char c = s.charAt(idx);
-        return Character.isDigit(c) || Character.isLetter(c);
+    private Character convert(char c) {
+        if (c >= 'a' && c <= 'z') {
+            return c;
+        } 
+        if (c >= 'A' && c <= 'Z') {
+            return (char) (c + ('a' - 'A'));
+        }
+        if (c >= '0' && c <= '9') {
+            return c;
+        }
+        return null;
     }
 }
